@@ -151,7 +151,7 @@
         <!-- Step 2 -->
         <div class="step-card" id="step2">
             <h3 style="color: #d81b60;">ပြန်ချစ်ကြမလား?</h3>
-            <img src="9c7d10ef06fb85367432888dece00333.jpg" class="sticker"><br>
+            <img src="https://i.imgur.com/83pL7hN.jpeg" class="sticker"><br>
             <div class="btn-group">
                 <button class="btn btn-green" id="yesBtn1" onclick="nextStep(3)">ချစ်မယ်လေ</button>
                 <button class="btn btn-lightgreen" id="noBtn1" onclick="shrinkNoBtn()">မချစ်ဘူး</button>
@@ -161,7 +161,7 @@
         <!-- Step 3 -->
         <div class="step-card" id="step3">
             <h3 style="color: #d81b60;">သတိရနေတာ သိရဲ့လား?</h3>
-            <img src="b47403adde602719610b9038d63b84a8.jpg" class="sticker"><br>
+            <img src="https://i.imgur.com/K5bZ0rT.jpeg" class="sticker"><br>
             <div class="btn-group" style="position: relative; min-height: 100px;">
                 <button class="btn btn-green" onclick="nextStep(4)">ဒီကရောပဲ</button>
                 <button class="btn btn-lightgreen" id="runBtn" onclick="moveRunBtn()" style="position: relative;">မယုံပါဘူး</button>
@@ -171,7 +171,7 @@
         <!-- Step 4 -->
         <div class="step-card" id="step4">
             <h3 style="color: #d81b60;">ပြန်တွဲကြမယ်လေနော် နော်...</h3>
-            <img src="3e934061dbe80f1ccf17c4741cf09932.jpg" class="sticker"><br>
+            <img src="https://i.imgur.com/3Z6r0xP.jpeg" class="sticker"><br>
             <div class="btn-group">
                 <button class="btn btn-green" onclick="nextStep(5)">တွဲကြမယ်လေ</button>
                 <button class="btn btn-lightgreen" id="hideBtn" onclick="hideSelf()">တော်ပါပြီ</button>
@@ -181,7 +181,7 @@
         <!-- Step 5 -->
         <div class="step-card" id="step5">
             <h3 style="color: #d81b60;">ပြန်လာမယ်မလား</h3>
-            <img src="af940ef113538023725073d3e50de640.jpg" class="sticker"><br>
+            <img src="https://i.imgur.com/7v9l8wM.jpeg" class="sticker"><br>
             <div class="btn-group">
                 <button class="btn btn-green" onclick="nextStep(6)">ပြန်လာမယ်</button>
                 <button class="btn btn-lightgreen" onclick="showFullScreen()">ပြန်မလာဘူး</button>
@@ -198,7 +198,7 @@
         <!-- Step 7 -->
         <div class="step-card" id="step7">
             <h3 style="color: #d81b60;">ဒါဆို ရည်းစားပြန်ဖြစ်ပြီနော် ဟဲဟဲ</h3>
-            <img src="3d5fc849eb43f0b4ca74d1c5ed6881b5.jpg" class="sticker"><br>
+            <img src="https://i.imgur.com/1x9wQ2p.jpeg" class="sticker"><br>
             <div class="btn-group">
                 <button class="btn btn-green" onclick="finishAgreement()">Yes, Of Course</button>
             </div>
@@ -225,5 +225,47 @@
 
         function nextStep(stepNumber) {
             const cards = document.querySelectorAll('.step-card');
+            cards.forEach(card => card.classList.remove('active'));
+            document.getElementById('step' + stepNumber).classList.add('active');
+        }
 
-        
+        function shrinkNoBtn() {
+            clickCount++;
+            yesScale += 0.25;
+            noScale -= 0.25;
+
+            const yesBtn = document.getElementById('yesBtn1');
+            const noBtn = document.getElementById('noBtn1');
+
+            yesBtn.style.transform = `scale(${yesScale})`;
+            noBtn.style.transform = `scale(${noScale})`;
+
+            if (clickCount >= 4 || noScale <= 0) {
+                noBtn.style.display = 'none';
+            }
+        }
+
+        function moveRunBtn() {
+            const btn = document.getElementById('runBtn');
+            const x = Math.random() * 140 - 70;
+            const y = Math.random() * 80 - 40;
+            btn.style.transform = `translate(${x}px, ${y}px)`;
+        }
+
+        function hideSelf() {
+            document.getElementById('hideBtn').style.display = 'none';
+        }
+
+        function showFullScreen() {
+            nextStep(6);
+        }
+
+        function finishAgreement() {
+            const cards = document.querySelectorAll('.step-card');
+            cards.forEach(card => card.classList.remove('active'));
+            document.getElementById('resultPage').classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
